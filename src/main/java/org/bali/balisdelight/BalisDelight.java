@@ -8,10 +8,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("balisdelight")
 public class BalisDelight {
+    /**
+     * 本模组的MOD_ID
+     */
     public static final String MOD_ID = "balisdelight";
     public BalisDelight(FMLJavaModLoadingContext context) {
-        ItemRegistry.ITEMS.register(context.getModEventBus());
-        ItemRegistry.TABS.register(context.getModEventBus());
+        BalisRegistry.registry(context);
     }
 
     @SubscribeEvent
