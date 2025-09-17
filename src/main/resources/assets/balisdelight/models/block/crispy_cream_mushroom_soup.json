@@ -1,0 +1,6 @@
+{
+  "parent": "block/cake",
+  "textures": {
+    "cake": "balisdelight:block/crispy_cream_mushroom_soup"
+  }
+}

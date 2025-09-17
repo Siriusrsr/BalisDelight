@@ -2,13 +2,11 @@ package org.bali.balisdelight;
 
 import net.minecraft.world.item.Item;
 
-/**
- * CoffeeBeans物品类
- */
 public class CoffeeBeans extends Item {
-    public CoffeeBeans() {
-        super(new Properties().fireResistant());
 
+    public CoffeeBeans() {
+        //Magic! The coffee beans can resist the fire!!!
+        super(new Properties().fireResistant());
     }
 }
 
