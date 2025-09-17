@@ -14,12 +14,12 @@ import static org.bali.balisdelight.BalisDelight.MOD_ID;
 public class ItemRegistry {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, "balisdelight");
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "balisdelight");
-    public static RegistryObject<Item> coffee_beans = ITEMS.register("coffee_beans", CoffeeBeans::new);
+    public static RegistryObject<Item> coffee_beans = ITEMS.register("coffee_beans", ()-> new CoffeeBeans());
     public static final CreativeModeTab ct = CreativeModeTab.builder()
-            .title(Component.translatable("item_group."+MOD_ID+".BalisdelightTab"))
+            .title(Component.translatable("item_group."+MOD_ID+".BalisDelightTab"))
             .icon(() -> new ItemStack(coffee_beans.get()))
             .displayItems((params, output) -> {
                 output.accept(coffee_beans.get());})
             .build();
-    public static final RegistryObject<CreativeModeTab> balis_delight_tab = TABS.register("BalisDelightTab",()->ct);
+    public static final RegistryObject<CreativeModeTab> balis_delight_tab = TABS.register("balisdelighttab",()->ct);
 }
