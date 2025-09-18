@@ -27,10 +27,15 @@ public class ModItem {
      * 本模组的Item注册Handler
      */
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "balisdelight");
+
     static final RegistryObject<Item> coffee_beans = ITEMS.register("coffee_beans", CoffeeBeans::new);//coffee_beans注册obj
+    static final RegistryObject<Item> stone_pot = ITEMS.register("stone_pot",()->{
+        return new BlockItem(ModBlock.stone_pot.get(), new Item.Properties());
+    });
     static final RegistryObject<Item> crispy_cream_mushroom_soup = ITEMS.register("crispy_cream_mushroom_soup", ()->{
         return new BlockItem(ModBlock.crispy_cream_mushroom_soup.get(), new Item.Properties());
     });
+
     /**
      * tag定义
      */
@@ -40,6 +45,7 @@ public class ModItem {
             .displayItems((params, output) -> {
                 output.accept(coffee_beans.get());
                 output.accept(crispy_cream_mushroom_soup.get());
+                output.accept(stone_pot.get());
             })
             .build();
     //tag注册obj

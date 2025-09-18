@@ -10,7 +10,9 @@ import org.bali.balisdelight.common.registry.ModItem;
 
 @Mod("balisdelight")
 public class BalisDelight {
-
+    /**
+     * 本模组的MOD_ID
+     */
     public static final String MOD_ID = "balisdelight";
 
     public BalisDelight(FMLJavaModLoadingContext context) {

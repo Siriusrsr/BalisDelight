@@ -1,6 +1,6 @@
 {
-  "parent": "block/cake",
+  "parent": "block/cube_all",
   "textures": {
-    "cake": "balisdelight:block/crispy_cream_mushroom_soup"
+    "all": "balisdelight:block/crispy_cream_mushroom_soup"
   }
 }
