@@ -1,17 +1,21 @@
 package org.bali.balisdelight;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 
-public class StonePot extends Block {
-
-//    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public class StonePot extends Block {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     private static final VoxelShape voxelShape;
 
@@ -29,7 +33,7 @@ public class StonePot extends Block {
 
     public StonePot(Properties properties) {
         super(Properties.of());
-//        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     /**
@@ -44,8 +48,13 @@ public class StonePot extends Block {
     /**
      *  在放置方块时，根据玩家朝向改变方块方向
      */
-//    @Override
-//    public BlockState getStateForPlacement(BlockPlaceContext context){
-//        return this.defaultBlockState().setValue(FACING,context.getHorizontalDirection());
-//    }
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context){
+        return this.defaultBlockState().setValue(FACING,context.getHorizontalDirection());
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder .add(FACING);
+    }
 }

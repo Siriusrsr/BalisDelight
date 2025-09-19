@@ -1,5 +1,19 @@
 {
   "variants": {
-    "": {"model": "balisdelight:block/stone_pot"}
+    "facing=east": {
+      "model": "balisdelight:block/stone_pot",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "balisdelight:block/stone_pot",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "balisdelight:block/stone_pot"
+    },
+    "facing=west": {
+      "model": "balisdelight:block/stone_pot",
+      "y": 90
+    }
   }
 }
