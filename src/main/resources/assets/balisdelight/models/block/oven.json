@@ -1,0 +1,5 @@
+{
+  "loader": "forge:obj",
+  "model": "balisdelight:models/block/oven.obj",
+  "flip-v": true
+}
