@@ -1,4 +1,4 @@
-package org.bali.balisdelight;
+package org.bali.balisdelight.common.Item;
 
 import net.minecraft.world.item.Item;
 
