@@ -1,4 +1,4 @@
-package org.bali.balisdelight;
+package org.bali.balisdelight.common.Block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,11 +23,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
      *  定义方块模型
      */
     static {
-        VoxelShape base = Block.box(1.0D,0.0D,1.0D,15.0D,1.0D,15.0D);
-        VoxelShape line1 = Block.box(1.0D,1.0D,1.0D,2.0D,4.0D,15.0D);
-        VoxelShape line2 = Block.box(2.0D,1.0D,1.0D,14.0D,4.0D,2.0D);
-        VoxelShape line3 = Block.box(2.0D,1.0D,14.0D,14.0D,4.0D,15.0D);
-        VoxelShape line4 = Block.box(14.0D,1.0D,1.0D,15.0D,4.0D,15.0D);
+        VoxelShape base = Block.box(2.0D,0.0D,2.0D,14.0D,1.0D,14.0D);
+        VoxelShape line1 = Block.box(2.0D,1.0D,2.0D,3.0D,4.0D,14.0D);
+        VoxelShape line2 = Block.box(3.0D,1.0D,2.0D,13.0D,4.0D,3.0D);
+        VoxelShape line3 = Block.box(3.0D,1.0D,13.0D,13.0D,4.0D,14.0D);
+        VoxelShape line4 = Block.box(13.0D,1.0D,2.0D,14.0D,4.0D,14.0D);
         voxelShape = Shapes.or(base,line1,line2,line3,line4);
     }
 
@@ -46,7 +46,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
     }
 
     /**
-     *  在放置方块时，根据玩家朝向改变方块方向
+     *  在放置方块时，根据玩家朝向改变方块的方向值
      */
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context){
