@@ -5,6 +5,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.bali.balisdelight.common.registry.ModBlock;
+import org.bali.balisdelight.common.registry.ModBlockEntityTypes;
 import org.bali.balisdelight.common.registry.ModItem;
 import org.bali.balisdelight.common.registry.ModTab;
 
@@ -21,9 +22,10 @@ public class BalisDelight {
      * @param context FML上下文
      */
     public BalisDelight(FMLJavaModLoadingContext context) {
+        ModBlock.BLOCKS.register(context.getModEventBus());
         ModItem.ITEMS.register(context.getModEventBus());
         ModTab.TABS.register(context.getModEventBus());
-        ModBlock.BLOCKS.register(context.getModEventBus());
+        ModBlockEntityTypes.TILES.register(context.getModEventBus());
     }
 
     @SubscribeEvent

@@ -1,25 +1,17 @@
 package org.bali.balisdelight.common.registry;
 
 import com.google.common.collect.Sets;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import org.bali.balisdelight.CoffeeBeans;
-import org.bali.balisdelight.StonePot;
-import org.objectweb.asm.tree.IincInsnNode;
+import org.bali.balisdelight.common.Item.CoffeeBeans;
 
 import java.util.LinkedHashSet;
 import java.util.function.Supplier;
-
-import static org.bali.balisdelight.BalisDelight.MOD_ID;
 
 /**
  * 本模组的物品注册类。所有物品注册应在此类中完成
@@ -44,17 +36,25 @@ public class ModItem {
     /**
      * 本模组的Item标准化分类
      */
-    public static Item.Properties CommonItem() {
+    public static Item.Properties commonItem() {
         return new Item.Properties();
     }
 
-    static final RegistryObject<Item> coffee_beans = registerWithTab("coffee_beans", CoffeeBeans::new);//coffee_beans注册obj
+    public static Item.Properties foodItem(FoodProperties food) {
+        return new Item.Properties().food(food);
+    }
 
-    static final RegistryObject<Item> stone_pot = registerWithTab("stone_pot",()->{
-        return new BlockItem(ModBlock.stone_pot.get(), CommonItem());
+    public static final RegistryObject<Item> coffee_beans = registerWithTab("coffee_beans", CoffeeBeans::new);//coffee_beans注册obj
+
+    public static final RegistryObject<Item> stone_pot = registerWithTab("stone_pot",()->{
+        return new BlockItem(ModBlock.stone_pot.get(), commonItem());
     });
 
-    static final RegistryObject<Item> crispy_cream_mushroom_soup = registerWithTab("crispy_cream_mushroom_soup", ()->{
-        return new BlockItem(ModBlock.crispy_cream_mushroom_soup.get(), CommonItem());
+    public static final RegistryObject<Item> crispy_cream_mushroom_soup = registerWithTab("crispy_cream_mushroom_soup", ()->{
+        return new BlockItem(ModBlock.crispy_cream_mushroom_soup.get(), commonItem());
+    });
+
+    public static final RegistryObject<Item> oven = registerWithTab("oven", ()->{
+        return new BlockItem(ModBlock.oven.get(), commonItem());
     });
 }
