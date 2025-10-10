@@ -1,4 +1,4 @@
-package org.bali.balisdelight.common.Block.Entity.Inventory;
+package org.bali.balisdelight.common.block.entity.inventory;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;

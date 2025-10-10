@@ -1,4 +1,4 @@
-package org.bali.balisdelight.common.Block;
+package org.bali.balisdelight.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,9 +31,6 @@ public class CrispyCreamMushroomSoup extends Block {
 
     private static final VoxelShape voxelShape;
 
-    /**
-     *  定义方块模型
-     */
     static {
         VoxelShape base = Block.box(2.0D,0.0D,2.0D,14.0D,4.0D,14.0D);
         VoxelShape top = Block.box(1.0D,5.0D,1.0D,15.0D,6.0D,15.0D);
@@ -83,7 +80,7 @@ public class CrispyCreamMushroomSoup extends Block {
             playerIn.getFoodData().eat(2,0.3f);
             int bites = state.getValue(BITES);
             if (bites == 4) {
-                level.setBlock(pos,ModBlock.stone_pot.get().defaultBlockState().setValue(FACING,state.getValue(FACING)), 3);
+                level.setBlock(pos,ModBlock.STONE_POT.get().defaultBlockState().setValue(FACING,state.getValue(FACING)), 3);
                 level.playSound(null,pos,SoundEvents.GENERIC_DRINK,SoundSource.BLOCKS,0.8f,0.8f);
             }
 
