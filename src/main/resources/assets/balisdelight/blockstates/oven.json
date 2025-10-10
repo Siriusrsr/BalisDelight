@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "balisdelight:block/oven",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "balisdelight:block/oven",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "balisdelight:block/oven"
+    },
+    "facing=west": {
+      "model": "balisdelight:block/oven",
+      "y": 90
+    }
+  }
+}
