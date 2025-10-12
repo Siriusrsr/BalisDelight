@@ -4,8 +4,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -24,6 +27,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -34,22 +38,33 @@ import org.bali.balisdelight.common.block.state.OvenBlockSupport;
 import org.bali.balisdelight.common.registry.ModBlockEntityTypes;
 
 import javax.annotation.Nullable;
+import java.util.Random;
+
+import static org.bali.balisdelight.common.block.entity.OvenBlockEntity.ANIMATE;
+import static org.bali.balisdelight.common.block.entity.OvenBlockEntity.LIT;
 
 @SuppressWarnings("deprecation")
 public class OvenBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final EnumProperty<OvenBlockSupport> SUPPORT = EnumProperty.create("support", OvenBlockSupport.class);
+//    public static final EnumProperty<OvenBlockSupport> SUPPORT = EnumProperty.create("support", OvenBlockSupport.class);
 
     private static final VoxelShape voxelShape;
 
     static {
-        VoxelShape base = Block.box(0.0D,0.0D,1.0D,16.0D,16.D,16.0D);
-        voxelShape = Shapes.or(base);
+        voxelShape = Block.box(1.0D, 0.0D, 0.0D, 16.0D, 16.D, 16.0D);
     }
 
-    public OvenBlock(BlockBehaviour.Properties props) {
-        super(props);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    public RenderShape getRenderShape(BlockState p_48727_) {
+        return RenderShape.MODEL;
+    }
+
+    public OvenBlock(Properties props) {
+        super(props.lightLevel(state -> state.getValue(LIT) ? 15 : 0));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(LIT, false)
+                .setValue(ANIMATE, false)
+        );
     }
 
         @Override
@@ -87,7 +102,10 @@ public class OvenBlock extends BaseEntityBlock {
      */
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context){
-        return this.defaultBlockState().setValue(FACING,context.getHorizontalDirection());
+        return this.defaultBlockState()
+                .setValue(FACING,context.getHorizontalDirection())
+                .setValue(LIT, false)
+                .setValue(ANIMATE, false);
     }
 
     @Override
@@ -110,6 +128,8 @@ public class OvenBlock extends BaseEntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FACING);
+        builder.add(LIT);
+        builder.add(ANIMATE);
     }
 
     @Nullable
@@ -121,6 +141,12 @@ public class OvenBlock extends BaseEntityBlock {
     @Nullable
     protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> serverType, BlockEntityType<E> clientType, BlockEntityTicker<? super E> ticker) {
         return clientType == serverType ? (BlockEntityTicker<A>)ticker : null;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        return createTickerHelper(blockEntityType, ModBlockEntityTypes.OVEN.get(), OvenBlockEntity::tick);
     }
 }
 

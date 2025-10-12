@@ -7,7 +7,9 @@ import net.minecraftforge.items.SlotItemHandler;
 import org.bali.balisdelight.common.block.entity.OvenBlockEntity;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@ParametersAreNonnullByDefault
 public class OvenBlockResultSlot extends SlotItemHandler{
     public final OvenBlockEntity ovenBlockEntity;
     private final Player player;
@@ -15,6 +17,7 @@ public class OvenBlockResultSlot extends SlotItemHandler{
 
     public OvenBlockResultSlot(OvenBlockEntity ovenBlockEntity, Player player, IItemHandler itemHandler, int index, int xPosition, int yPosition) {
         super(itemHandler, index, xPosition, yPosition);
+
         this.player = player;
         this.ovenBlockEntity = ovenBlockEntity;
     }
@@ -40,9 +43,9 @@ public class OvenBlockResultSlot extends SlotItemHandler{
     }
 
     @Override
-    protected void onQuickCraft(ItemStack stakc,int amount){
+    protected void onQuickCraft(ItemStack stack,int amount){
         this.removeCount += amount;
-        this.checkTakeAchievements(stakc);
+        this.checkTakeAchievements(stack);
     }
 
     @Override

@@ -1,18 +1,51 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,lit=false": {
       "model": "balisdelight:block/oven",
       "y": 270
+
     },
-    "facing=north": {
+    "facing=north,lit=false": {
       "model": "balisdelight:block/oven",
       "y": 180
     },
-    "facing=south": {
+    "facing=south,lit=false": {
       "model": "balisdelight:block/oven"
     },
-    "facing=west": {
+    "facing=west,lit=false": {
       "model": "balisdelight:block/oven",
+      "y": 90
+    },
+    "facing=east,lit=true,animate=false": {
+      "model": "balisdelight:block/burning_oven_1",
+      "y": 270
+
+    },
+    "facing=north,lit=true,animate=false": {
+      "model": "balisdelight:block/burning_oven_1",
+      "y": 180
+    },
+    "facing=south,lit=true,animate=false": {
+      "model": "balisdelight:block/burning_oven_1"
+    },
+    "facing=west,lit=true,animate=false": {
+      "model": "balisdelight:block/burning_oven_1",
+      "y": 90
+    },
+    "facing=east,lit=true,animate=true": {
+      "model": "balisdelight:block/burning_oven_2",
+      "y": 270
+
+    },
+    "facing=north,lit=true,animate=true": {
+      "model": "balisdelight:block/burning_oven_2",
+      "y": 180
+    },
+    "facing=south,lit=true,animate=true": {
+      "model": "balisdelight:block/burning_oven_2"
+    },
+    "facing=west,lit=true,animate=true": {
+      "model": "balisdelight:block/burning_oven_2",
       "y": 90
     }
   }

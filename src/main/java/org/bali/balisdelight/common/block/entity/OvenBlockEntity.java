@@ -27,6 +27,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -59,6 +61,10 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
     public static final int container_slot=7;
     public static final int output_slot=8;
     public static final int inventory_size =output_slot+1;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final BooleanProperty ANIMATE = BooleanProperty.create("animate");
+
+
 
     public static final Map<Item, Item> INGREDIENT_REMAINDER_OVERRIDES = Map.ofEntries(
             entry(Items.POWDER_SNOW_BUCKET, Items.BUCKET),
@@ -81,6 +87,9 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
     private final LazyOptional<IItemHandler>  inputHandler;
     private final LazyOptional<IItemHandler>  outputHandler;
 
+    private int animationTick = 0;
+    private static final int ANIMATION_INTERVAL = 30; // 每30 tick切换一次（1.5秒）
+
     private int cookTime;
     private int cookTimeTotal;
     private ItemStack mealContainerStack;
@@ -100,7 +109,7 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         this.mealContainerStack = ItemStack.EMPTY;
         this.cookingOvenData = createInArray();
         this.usedRecipeTracker = new Object2IntOpenHashMap<>();
-        this. checkNewRecipe = true;
+        this.checkNewRecipe = true;
 
     }
 
@@ -150,6 +159,11 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         }
         return ItemStack.EMPTY;
     }
+
+    public boolean isLit(BlockState state){
+        return state.getValue(LIT);
+    }
+
     @SuppressWarnings("all")
     @Override
     public void load(CompoundTag compound) {
@@ -235,21 +249,16 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         }
     }
 
-    public static void animationTick(Level level, BlockPos pos, BlockState state, OvenBlockEntity cookingPot) {
-            RandomSource random = level.random;
-            if (random.nextFloat() < 0.2F) {
-                double x = (double) pos.getX() + 0.5D + (random.nextDouble() * 0.6D - 0.3D);
-                double y = (double) pos.getY() + 0.7D;
-                double z = (double) pos.getZ() + 0.5D + (random.nextDouble() * 0.6D - 0.3D);
-                level.addParticle(ParticleTypes.BUBBLE_POP, x, y, z, 0.0D, 0.0D, 0.0D);
+    public static void tick(Level level, BlockPos pos, BlockState state, OvenBlockEntity blockEntity) {
+        if (level.isClientSide && state.getValue(LIT)) {
+            blockEntity.animationTick++;
+
+            if (blockEntity.animationTick >= ANIMATION_INTERVAL) {
+                boolean currentAnimate = state.getValue(ANIMATE);
+                level.setBlock(pos, state.setValue(ANIMATE, !currentAnimate), 3);
+                blockEntity.animationTick = 0;
             }
-            if (random.nextFloat() < 0.05F) {
-                double x = (double) pos.getX() + 0.5D + (random.nextDouble() * 0.4D - 0.2D);
-                double y = (double) pos.getY() + 0.5D;
-                double z = (double) pos.getZ() + 0.5D + (random.nextDouble() * 0.4D - 0.2D);
-                double motionY = random.nextBoolean() ? 0.015D : 0.005D;
-//                level.addParticle(ModParticleTypes.STEAM.get(), x, y, z, 0.0D, motionY, 0.0D);
-            }
+        }
     }
 
     private Optional<OvenBlockRecipe> getMatchingRecipe(RecipeWrapper inventoryWrapper) {
