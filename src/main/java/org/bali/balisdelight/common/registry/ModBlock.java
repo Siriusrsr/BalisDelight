@@ -8,6 +8,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.bali.balisdelight.common.block.CrispyCreamMushroomSoup;
 import org.bali.balisdelight.common.block.OvenBlock;
 import org.bali.balisdelight.common.block.StonePot;
+import org.bali.balisdelight.common.block.TestBlock;
 
 import static org.bali.balisdelight.BalisDelight.MOD_ID;
 
@@ -21,5 +22,7 @@ public class ModBlock {
             ()-> new CrispyCreamMushroomSoup(Block.Properties.copy(Blocks.CAKE)));
     public static  final RegistryObject<Block> OVEN = BLOCKS.register("oven",
             ()-> new OvenBlock(Block.Properties.copy(Blocks.IRON_BLOCK)));
+    public static final  RegistryObject<Block> TEST_BLOCK = BLOCKS.register("test_block",
+            ()-> new TestBlock(Block.Properties.copy(Blocks.IRON_BLOCK)));
 
 }
