@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.bali.balisdelight.BalisDelight;
@@ -27,6 +28,11 @@ public class ItemTags extends ItemTagsProvider {
     }
 
     private void registerModTags(){
-
+        tag(ModTags.OVEN_SERVING_CONTAINERS)
+                .add(ModItem.STONE_POT.get())
+                .add(Items.GLASS_BOTTLE)
+                .add(Items.BUCKET);
+        tag(ModTags.COFFEE_PRODUCT)
+                .add(ModItem.COFFEE_BEANS.get());
     }
 }
