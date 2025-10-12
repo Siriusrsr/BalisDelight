@@ -19,6 +19,7 @@ public class CookingOvenItemHandler implements IItemHandler {
         this.side = side;
     }
 
+    @Override
     public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
         return itemHandler.isItemValid(slot, stack);
     }

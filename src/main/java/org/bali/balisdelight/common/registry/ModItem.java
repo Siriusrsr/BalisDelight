@@ -46,15 +46,15 @@ public class ModItem {
 
     public static final RegistryObject<Item> COFFEE_BEANS = registerWithTab("coffee_beans", CoffeeBeans::new);//coffee_beans注册obj
 
-    public static final RegistryObject<Item> STONE_POT = registerWithTab("stone_pot",()->{
-        return new BlockItem(ModBlock.STONE_POT.get(), commonItem());
-    });
+    public static final RegistryObject<Item> STONE_POT = registerWithTab("stone_pot",
+            ()-> new BlockItem(ModBlock.STONE_POT.get(), commonItem()));
 
-    public static final RegistryObject<Item> CRISPY_CREAM_MUSHROOM_SOUP = registerWithTab("crispy_cream_mushroom_soup", ()->{
-        return new BlockItem(ModBlock.CRISPY_CREAM_MUSHROOM_SOUP.get(), commonItem());
-    });
+    public static final RegistryObject<Item> CRISPY_CREAM_MUSHROOM_SOUP = registerWithTab("crispy_cream_mushroom_soup",
+            ()-> new BlockItem(ModBlock.CRISPY_CREAM_MUSHROOM_SOUP.get(), commonItem()));
 
-    public static final RegistryObject<Item> OVEN = registerWithTab("oven", ()->{
-        return new BlockItem(ModBlock.OVEN.get(), commonItem());
-    });
+    public static final RegistryObject<Item> OVEN = registerWithTab("oven",
+            ()-> new BlockItem(ModBlock.OVEN.get(), commonItem()));
+
+    public static final RegistryObject<Item> TEST_BLOCK = ITEMS.register("test_block",
+            () -> new BlockItem(ModBlock.TEST_BLOCK.get(), new Item.Properties()));
 }

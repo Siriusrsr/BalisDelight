@@ -34,9 +34,9 @@ public class BalisDelight {
         }
 
         ModBlock.BLOCKS.register(context.getModEventBus());
+        ModBlockEntityTypes.TILES.register(context.getModEventBus());
         ModItem.ITEMS.register(context.getModEventBus());
         ModTab.TABS.register(context.getModEventBus());
-        ModBlockEntityTypes.TILES.register(context.getModEventBus());
         ModMenuTypes.MENU_TYPES.register(context.getModEventBus());
         ModRecipeTypes.RECIPE_TYPES.register(context.getModEventBus());
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(context.getModEventBus());

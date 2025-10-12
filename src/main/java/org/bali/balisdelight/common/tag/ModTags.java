@@ -30,5 +30,5 @@ public class ModTags {
 ////用于烤箱烤制菜肴的承装容器
     public static final TagKey<Item> OVEN_SERVING_CONTAINERS = modItemTag("oven_serving_containers");
 ////使用咖啡制成的咖啡制品，给予特殊药水效果驱散幻翼
-    public static final TagKey<Item> COFFEE_PRODUCT = modItemTag("COFFEE_PRODUCT");
+    public static final TagKey<Item> COFFEE_PRODUCT = modItemTag("coffee_product");
 }

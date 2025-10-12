@@ -19,6 +19,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
     private static final VoxelShape voxelShape;
 
+    /**
+     *  定义方块模型
+     */
     static {
         VoxelShape base = Block.box(2.0D,0.0D,2.0D,14.0D,1.0D,14.0D);
         VoxelShape line1 = Block.box(2.0D,1.0D,2.0D,3.0D,4.0D,14.0D);

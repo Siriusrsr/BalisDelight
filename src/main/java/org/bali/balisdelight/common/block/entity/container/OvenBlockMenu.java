@@ -87,10 +87,10 @@ public class OvenBlockMenu extends RecipeBookMenu<RecipeWrapper> {
         this.addDataSlots(ovenBlockDataIn);
     }
 
-    private static OvenBlockEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf buf) {
+    private static OvenBlockEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) {
         Objects.requireNonNull(playerInventory, "playerInventory cannot be null");
-        Objects.requireNonNull(buf, "buf cannot be null");
-        final BlockEntity tileAtPos = playerInventory.player.level().getBlockEntity(buf.readBlockPos());
+        Objects.requireNonNull(data, "bata cannot be null");
+        final BlockEntity tileAtPos = playerInventory.player.level().getBlockEntity(data.readBlockPos());
         if (tileAtPos instanceof OvenBlockEntity) {
             return (OvenBlockEntity) tileAtPos;
         }
@@ -114,12 +114,12 @@ public class OvenBlockMenu extends RecipeBookMenu<RecipeWrapper> {
         if (slot.hasItem()) {
             ItemStack slotStack = slot.getItem();
             slotStackCopy = slotStack.copy();
-            if (index == indexOutput){
+            if (index == indexOutput) {
                 if (!this.moveItemStackTo(slotStack, startPlayerInv, endPlayerInv, true)) {
                     return ItemStack.EMPTY;
                 }
             } else if (index > indexOutput){
-                boolean isValidContainer = slotStack.is(ModTags.OVEN_SERVING_CONTAINERS) || slotStack.is(blockEntity.getContainer().getItem());
+                boolean isValidContainer = slotStack.is(ModTags.OVEN_SERVING_CONTAINERS) || slotStack.is(blockEntity.getContainer().getItem()) ;
                 if (isValidContainer && !this.moveItemStackTo(slotStack, indexContainerInput, indexContainerInput+1, false)) {
                     return ItemStack.EMPTY;
                 } else if (!this.moveItemStackTo(slotStack,0,indexMealDisplay, false)) {
