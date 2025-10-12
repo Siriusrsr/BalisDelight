@@ -19,7 +19,7 @@ public class BlockTags extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-//        this.registerModTags();
+        this.registerModTags();
 //        this.registerMinecraftTags();
 //        this.registerForgeTags();
 //        this.registerCompatibilityTags();
@@ -28,13 +28,13 @@ public class BlockTags extends BlockTagsProvider {
     }
 
     protected void registerBlockMineables() {
-        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE).add(
-                ModBlock.OVEN.get(),
-                ModBlock.STONE_POT.get()
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(ModBlock.OVEN.get())
+                .add(ModBlock.STONE_POT.get()
         );
     }
 
     protected void registerModTags() {
-//        tag(ModTags.)
+
     }
 }
