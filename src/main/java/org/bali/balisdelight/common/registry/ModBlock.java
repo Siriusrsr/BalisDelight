@@ -19,7 +19,8 @@ public class ModBlock {
     public static  final RegistryObject<Block> STONE_POT = BLOCKS.register("stone_pot",
             ()-> new StonePot(Block.Properties.copy(Blocks.STONE)));
     public static  final RegistryObject<Block> CRISPY_CREAM_MUSHROOM_SOUP = BLOCKS.register("crispy_cream_mushroom_soup",
-            ()-> new CrispyCreamMushroomSoup(Block.Properties.copy(Blocks.CAKE)));
+            ()-> new CrispyCreamMushroomSoup(Block.Properties.copy(Blocks.CAKE)
+                    .strength(0.5f, 0.5f)));
     public static  final RegistryObject<Block> OVEN = BLOCKS.register("oven",
             ()-> new OvenBlock(Block.Properties.copy(Blocks.IRON_BLOCK)));
     public static final  RegistryObject<Block> TEST_BLOCK = BLOCKS.register("test_block",

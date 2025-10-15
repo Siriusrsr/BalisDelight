@@ -1,0 +1,32 @@
+{
+  "type": "balisdelight:cooking_by_oven",
+  "container": {
+    "item": "balisdelight:stone_pot"
+  },
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "tag": "forge:milk"
+    },
+    {
+      "item": "minecraft:wheat"
+    },
+    {
+      "tag": "forge:milk"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "item": "minecraft:cake"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item":"balisdelight:crispy_cream_mushroom_soup"
+  }
+}

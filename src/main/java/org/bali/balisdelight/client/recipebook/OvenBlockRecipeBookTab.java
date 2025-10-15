@@ -5,7 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 
 public enum OvenBlockRecipeBookTab implements StringRepresentable {
-    COFFEE_PRODUCT("COFFEE_PRODUCT");
+    COFFEE_PRODUCT("coffee_product"),
+    MEALS("meals");
 
     public final String name;
 
@@ -29,6 +30,6 @@ public enum OvenBlockRecipeBookTab implements StringRepresentable {
 
     @Override
     public @NotNull String getSerializedName() {
-        return "";
+        return this.name;
     }
 }

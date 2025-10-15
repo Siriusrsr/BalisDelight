@@ -15,6 +15,7 @@ import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import org.bali.balisdelight.BalisDelight;
+import org.bali.balisdelight.common.Configuration;
 import org.bali.balisdelight.common.block.entity.container.OvenBlockMenu;
 import org.bali.balisdelight.common.utility.TextUtils;
 
@@ -44,14 +45,19 @@ public class OvenBlockScreen extends AbstractContainerScreen<OvenBlockMenu> impl
     public void init(){
         super.init();
         this.widthTooNarrow = this.width < 379;
+        this.titleLabelX = 28;
         this.recipeBookComponent.init(this.width,this.height,this.minecraft,this.widthTooNarrow,this.menu);
         this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width,this.imageWidth);
-
-        this.addRenderableWidget(new ImageButton(this.leftPos + 5,this.height / 2 - 49,20,18,0,0,19,Recipe_Button_Location,(button)->{
-            this.recipeBookComponent.toggleVisibility();
+        if (Configuration.ENABLE_RECIPE_BOOK_OVEN.get()){
+            this.addRenderableWidget(new ImageButton(this.leftPos + 5,this.height / 2 - 49,20,18,0,0,19,Recipe_Button_Location,(button)->{
+                this.recipeBookComponent.toggleVisibility();
+                this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width,this.imageWidth);
+                ((ImageButton) button).setPosition(this.leftPos+5,this.height / 2 - 49);
+            }));
+        }else {
+            this.recipeBookComponent.hide();
             this.leftPos = this.recipeBookComponent.updateScreenPosition(this.width,this.imageWidth);
-            ((ImageButton) button).setPosition(this.leftPos+5,this.height / 2 - 49);
-        }));
+        }
         this.addWidget(this.recipeBookComponent);
         this.setInitialFocus(this.recipeBookComponent);
     }
@@ -97,6 +103,12 @@ public class OvenBlockScreen extends AbstractContainerScreen<OvenBlockMenu> impl
                 gui.renderTooltip(font, this.hoveredSlot.getItem(), mouseX, mouseY);
             }
         }
+    }
+
+    @Override
+    protected void renderLabels(GuiGraphics gui, int mouseX, int mouseY) {
+        super.renderLabels(gui, mouseX, mouseY);
+        gui.drawString(this.font, this.playerInventoryTitle, 8, (this.imageHeight - 96 + 2), 4210752, false);
     }
 
     @Override

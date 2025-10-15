@@ -16,8 +16,9 @@ public class ModTags {
 //
 //    public static final TagKey<Item> DRINKS = modItemTag("drinks");
 
+    @SuppressWarnings("all")
     private static TagKey<Item> modItemTag(String path) {
-        return ItemTags.create(ResourceLocation.fromNamespaceAndPath(BalisDelight.MOD_ID, path));
+        return ItemTags.create(new ResourceLocation(BalisDelight.MOD_ID, path));
     }
 
     private static TagKey<Block> modBlockTag(String path) {

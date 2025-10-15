@@ -13,6 +13,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -38,8 +39,8 @@ public class CrispyCreamMushroomSoup extends Block {
         voxelShape = Shapes.or(base,top);
     }
 
-    public CrispyCreamMushroomSoup(Properties props) {
-        super(Properties.of());
+    public CrispyCreamMushroomSoup(BlockBehaviour.Properties props) {
+        super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(BITES,0));
     }
 

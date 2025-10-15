@@ -4,6 +4,7 @@
   "block.balisdelight.oven": "烤箱",
   "item.balisdelight.coffee_beans": "咖啡豆",
   "item_group.balisdelight.BalisDelightTab": "八里乐事",
-  "container.oven_block.served_on": "上菜",
-  "container.recipe_book.cookable": "可制作"
+  "balisdelight.container.oven_block.served_on": "需盛装于：%s",
+  "balisdelight.container.recipe_book.cookable": "仅显示可烹饪",
+  "balisdelight.container.oven":"烤箱",
 }

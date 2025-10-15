@@ -6,13 +6,11 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.Nameable;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -46,6 +44,7 @@ import org.bali.balisdelight.common.registry.ModItem;
 import org.bali.balisdelight.common.registry.ModRecipeTypes;
 import org.bali.balisdelight.common.utility.ItemUtils;
 import org.bali.balisdelight.common.utility.TextUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -183,7 +182,7 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
     }
 
     @Override
-    public void saveAdditional(CompoundTag compound) {
+    public void saveAdditional(@NotNull CompoundTag compound) {
         super.saveAdditional(compound);
         compound.putInt("CookTime", cookTime);
         compound.putInt("CookTimeTotal", cookTimeTotal);
@@ -249,7 +248,7 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
         }
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, OvenBlockEntity blockEntity) {
+    public static void animateTick(Level level, BlockPos pos, BlockState state, OvenBlockEntity blockEntity) {
         if (level.isClientSide && state.getValue(LIT)) {
             blockEntity.animationTick++;
 

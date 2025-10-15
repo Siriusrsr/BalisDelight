@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.bali.balisdelight.common.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "balisdelight.refmap.json",
+  "client": [
+    "accessor.RecipeManagerAccessor"
+  ],
+  "mixins": [
+    "accessor.RecipeManagerAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

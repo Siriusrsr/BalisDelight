@@ -54,6 +54,7 @@ public class OvenBlockRecipe implements Recipe<RecipeWrapper> {
         this.cookTime = cookTime;
     }
 
+
     @Nullable
     public OvenBlockRecipeBookTab getRecipeBookTab() {
         return this.tab;
@@ -114,7 +115,7 @@ public class OvenBlockRecipe implements Recipe<RecipeWrapper> {
 
     @Override
     public RecipeType<?> getType() {
-        return ModRecipeTypes.COOKING_BY_OVEN.get();
+        return ModRecipeTypes.  COOKING_BY_OVEN.get();
     }
 
     @Override

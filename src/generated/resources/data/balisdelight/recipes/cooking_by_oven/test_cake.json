@@ -1,0 +1,20 @@
+{
+  "type": "balisdelight:cooking_by_oven",
+  "container": {
+    "item": "balisdelight:stone_pot"
+  },
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "item":"balisdelight:crispy_cream_mushroom_soup"
+  }
+}

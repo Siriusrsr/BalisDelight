@@ -1,9 +1,10 @@
 {
-  "block.balisdelight.crispy_cream_mushroom_soup": "Crispy cream mushroom soup",
-  "block.balisdelight.stone_pot": "Stone pot",
+  "block.balisdelight.crispy_cream_mushroom_soup": "Crispy Cream Mushroom Soup",
+  "block.balisdelight.stone_pot": "Stone Pot",
   "block.balisdelight.oven": "Oven",
-  "item.balisdelight.coffee_beans": "Coffee beans",
+  "item.balisdelight.coffee_beans": "Coffee Beans",
   "item_group.balisdelight.BalisDelightTab": "Bali's Delight",
-  "container.oven_block.served_on": "Served on",
-  "container.recipe_book.cookable": "Cookable"
+  "balisdelight.container.oven_block.served_on": "Served on: %s",
+  "balisdelight.container.recipe_book.cookable": "Showing Cookable",
+  "balisdelight.container.oven": "Oven"
 }

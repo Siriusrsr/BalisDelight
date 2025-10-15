@@ -115,11 +115,15 @@ public class OvenBlockMenu extends RecipeBookMenu<RecipeWrapper> {
             ItemStack slotStack = slot.getItem();
             slotStackCopy = slotStack.copy();
             if (index == indexOutput) {
+                //从输出槽到背包
                 if (!this.moveItemStackTo(slotStack, startPlayerInv, endPlayerInv, true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (index > indexOutput){
-                boolean isValidContainer = slotStack.is(ModTags.OVEN_SERVING_CONTAINERS) || slotStack.is(blockEntity.getContainer().getItem()) ;
+            } else if (index >= indexOutput && index < endPlayerInv) {
+                //从背包到烤箱
+                //检测是否为可用容器
+                boolean isValidContainer = slotStack.is(ModTags.OVEN_SERVING_CONTAINERS) || slotStack.is(blockEntity.getContainer().getItem());
+                //如果是可用容器 且 容器槽有空间 则进入容器槽
                 if (isValidContainer && !this.moveItemStackTo(slotStack, indexContainerInput, indexContainerInput+1, false)) {
                     return ItemStack.EMPTY;
                 } else if (!this.moveItemStackTo(slotStack,0,indexMealDisplay, false)) {
