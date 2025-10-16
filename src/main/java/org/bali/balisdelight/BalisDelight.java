@@ -20,14 +20,13 @@ import org.bali.balisdelight.common.registry.*;
 @Mod("balisdelight")
 public class BalisDelight {
 
-
     /**
      * 本模组的MOD_ID
      */
     public static final String MOD_ID = "balisdelight";
     public static final Logger LOGGER = LogManager.getLogger();
 
-    public static final RecipeBookType RECIPE_BOOK_TYPE = RecipeBookType.create("OvenCooking");
+    public static final RecipeBookType RECIPE_BOOK_TYPE = RecipeBookType.create("COOKING_BY_OVEN");
     /**
      * 调用该方法将模组内容注册到游戏中
      * @param context FML上下文

@@ -41,6 +41,8 @@
 
     @SuppressWarnings("deprecation")
     public class OvenBlock extends BaseEntityBlock {
+
+
         public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     //    public static final EnumProperty<OvenBlockSupport> SUPPORT = EnumProperty.create("support", OvenBlockSupport.class);
 

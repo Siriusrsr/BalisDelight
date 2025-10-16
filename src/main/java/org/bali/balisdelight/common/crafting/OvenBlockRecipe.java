@@ -3,16 +3,19 @@ package org.bali.balisdelight.common.crafting;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import net.minecraft.core.NonNullList;
 import org.bali.balisdelight.BalisDelight;
 import org.bali.balisdelight.client.recipebook.OvenBlockRecipeBookTab;
 import org.bali.balisdelight.common.registry.ModItem;
@@ -22,6 +25,7 @@ import org.bali.balisdelight.common.registry.ModRecipeTypes;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
+@SuppressWarnings("ClassCanBeRecord")
 public class OvenBlockRecipe implements Recipe<RecipeWrapper> {
     public static final int INPUT_SLOTS = 6;
 
@@ -39,7 +43,6 @@ public class OvenBlockRecipe implements Recipe<RecipeWrapper> {
         this.group = group;
         this.tab = tab;
         this.inputItems = inputItems;
-
         this.output = output;
 
     if (!container.isEmpty()) {
@@ -54,6 +57,15 @@ public class OvenBlockRecipe implements Recipe<RecipeWrapper> {
         this.cookTime = cookTime;
     }
 
+    @Override
+    public ResourceLocation getId() {
+        return this.id;
+    }
+
+    @Override
+    public String getGroup() {
+        return this.group;
+    }
 
     @Nullable
     public OvenBlockRecipeBookTab getRecipeBookTab() {
@@ -61,19 +73,18 @@ public class OvenBlockRecipe implements Recipe<RecipeWrapper> {
     }
 
     @Override
-    public ItemStack getResultItem(RegistryAccess access) {
-        return this.output;
+    public NonNullList<Ingredient> getIngredients() {
+        return this.inputItems;
     }
 
     @Override
-    public ResourceLocation getId() {
-        return this.id;
+    public ItemStack getResultItem(RegistryAccess access) {
+        return this.output;
     }
 
     public ItemStack getOutputContainer() {
         return this.container;
     }
-
 
         @Override
     public ItemStack assemble(RecipeWrapper inv, RegistryAccess access) {
@@ -226,5 +237,4 @@ public class OvenBlockRecipe implements Recipe<RecipeWrapper> {
             buffer.writeVarInt(recipe.cookTime);
         }
     }
-
 }

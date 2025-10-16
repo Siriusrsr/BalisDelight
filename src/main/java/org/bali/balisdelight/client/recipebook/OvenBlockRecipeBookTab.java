@@ -6,7 +6,9 @@ import org.jetbrains.annotations.NotNull;
 
 public enum OvenBlockRecipeBookTab implements StringRepresentable {
     COFFEE_PRODUCT("coffee_product"),
-    MEALS("meals");
+    MEALS("meals"),
+    DRINK("drink"),
+    MISC("misc");
 
     public final String name;
 

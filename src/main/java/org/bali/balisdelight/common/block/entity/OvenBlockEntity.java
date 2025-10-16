@@ -60,7 +60,7 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
     public static final int container_slot=7;
     public static final int output_slot=8;
     public static final int inventory_size =output_slot+1;
-    public static final BooleanProperty LIT = BlockStateProperties.LIT;
+    public static BooleanProperty LIT = BlockStateProperties.LIT;
     public static final BooleanProperty ANIMATE = BooleanProperty.create("animate");
 
 
@@ -221,15 +221,22 @@ public class OvenBlockEntity extends SyncedBlockEntity implements MenuProvider, 
     public static void cookingTick(Level level, BlockPos pos, BlockState state,OvenBlockEntity ovenBlock) {
         boolean didInventoryChange = false;
 
+        boolean shouldBeLit = false;
+
         if (ovenBlock.hasInput()) {
             Optional<OvenBlockRecipe> recipe = ovenBlock.getMatchingRecipe(new RecipeWrapper(ovenBlock.inventory));
             if (recipe.isPresent() && ovenBlock.canCook(recipe.get())) {
+                shouldBeLit = true;
                 didInventoryChange = ovenBlock.processCooking(recipe.get(), ovenBlock);
             } else {
                 ovenBlock.cookTime = Mth.clamp(ovenBlock.cookTime - 2, 0, ovenBlock.cookTimeTotal);
             }
         } else if (ovenBlock.cookTime > 0) {
             ovenBlock.cookTime = Mth.clamp(ovenBlock.cookTime - 2, 0, ovenBlock.cookTimeTotal);
+        }
+
+        if (!level.isClientSide && state.getValue(LIT) != shouldBeLit) {
+            level.setBlock(pos, state.setValue(LIT, shouldBeLit), 3);
         }
 
         ItemStack mealStack = ovenBlock.getMeal();
